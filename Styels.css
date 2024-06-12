@@ -1,0 +1,141 @@
+html {
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+}
+
+/*this is just where the title HOME is */
+h1 {
+    color: papayawhip;
+    background-color: #0f7754cc;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 4.5rem;
+    /*text-decoration: aquamarine underline wavy;*/
+    letter-spacing: .3em;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    border-radius: 0.6em;
+    /* position:sticky;
+    top: 20px; */
+    /* transform: translateY(); */
+}
+
+/* h1{
+    transform: scale(0.3);
+} */
+
+/*This is a card for all basic information so far*/
+.card {
+    color: #5f4421;
+    font-size: 2rem;
+    width: 15em;
+    /*height: 100px;*/
+    border-width: .15em;
+    border-color: black;
+    border-style: solid;
+    border-radius: 1.5em;
+    margin-bottom: calc(10%/6);
+    text-align: center;
+    background-color: #ffefd5cc;
+    padding-bottom: 20px;
+    display: inline-block;
+}
+
+header {
+    width: 50em;
+}
+
+a {
+    display: block;
+}
+
+p,
+a {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1em;
+}
+
+/*h2, p, a{
+    border-width: 5px;
+    border-color: black;
+    border-style: solid;
+}*/
+
+/*this is for WELCOME! and HERE ARE SOME LINKS TO MY WORK*/
+h2 {
+    font-size: 2em;
+    font-weight: 3rem;
+}
+
+/*for the web development course link*/
+#bootcamp {
+    color: black;
+}
+
+/*for the 2 links (Codepen, Github)*/
+a {
+    text-decoration: none;
+    color: #2d6955;
+    border-style: none;
+
+}
+
+body {
+    background-color: aqua;
+    background-image: url(Background.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    margin-left: 10px;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*span is for all spans, though currently the only spans being used are under the tag class*/
+span {
+    color: #000000;
+}
+
+.tag {
+    font-weight: bold;
+    color: #463014;
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+img {
+    width: 200px;
+    border-radius: 50%;
+    padding-top: 20px;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* tan #d2b48c
+aquamarine #7fffd4
+aqua #00ffff
+white #ffffff
+tam #a9dab0
+ta #69dac6
+wam #bfffea
+wa #80ffff
+all #94ecd8 */
+
+@media (min-width: 1125px) {
+    div {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
