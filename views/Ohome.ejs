@@ -15,11 +15,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Source+Sans+Pro&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="Styels_0.2.css">
-    <link rel="stylesheet" href="Sassycss">
+    <link rel="stylesheet" href="Styels.css">
     <script src="Script.js"></script>
     <!---<script src="Todo.js"></script>-->
     <script src="app.js"></script>
-    
+
 </head>
 
 <body>
@@ -57,6 +57,14 @@
             <div class="card-body">
                 <h2 class="h2 card-title text-primary text-center">I know</h2>
             </div>
+            <form action="lang" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="lang">
+                        <input class="form-control" name="lang[body]" id="lang" rows="1"></input>
+                    </label>
+                </div>
+            </form>
+
             <ul class="list-group-flush">
                 <li class="h5 list-group-item text-secondary text-center">HTML</li>
                 <li class="h5 list-group-item text-secondary text-center">CSS</li>
@@ -105,8 +113,14 @@
         </nav>
     </div>
 
-    <div>
-        
+    <div class="card container-fluid">
+        <form action="card" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="newCard"> Create New Card </label>
+                    <input class="form-control" name="new[body]" id="newCard" rows="1"></input>
+
+            </div>
+        </form>
     </div>
 
     <script src="forms.js"></script>

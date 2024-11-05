@@ -1,0 +1,15 @@
+* make public dorectory
+  * add Stylesheets and photos to public directory
+  * link home to pubdir
+- add updatability
+  - add new card
+    * creat card
+    * add form
+    * render new card on page
+    * rerout to home page
+    - append new parts to form
+  - language card
+    * add text area
+    * add form
+    -rout form card
+  
