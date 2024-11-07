@@ -11,3 +11,7 @@ current todo:
 I also want to figure out if I can make a new card by writing the cards html within the webpage.
 ### Divs
 Deviding into dives is bugged
+
+# Problems
+when creating a list the 'ad list' button being inside the form, submits the form
+* how to stop button in form from submitting form

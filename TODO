@@ -12,4 +12,5 @@
     * add text area
     * add form
     -rout form card
-  
+  - list card
+    - add list item and add button to seperate divs
