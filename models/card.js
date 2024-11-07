@@ -6,6 +6,7 @@ cardSchema = new Schema({
   body: String,
   link: String,
   linkT: String,
+  list: String,
 });
 
 module.exports = mongoose.model("Card",cardSchema);

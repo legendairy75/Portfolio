@@ -27,7 +27,12 @@ TODO:
                 <p class="card-text text-center">
                     <%= card.body %>
                 </p>
+
+                <p class="card-text text-center">
+                    <%= card.list %>
+                </p>
                 <a href="<%=card.link%>"><%=card.linkT%></a>
+                <button id='editButt'>Edit</button> 
             </div>
         </nav>
   <% }%>
@@ -36,4 +41,5 @@ TODO:
 
 </body>
 <script src="new.js"></script>
+<script src="edit.js"></script>
 </html>

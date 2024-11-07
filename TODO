@@ -13,4 +13,7 @@
     * add form
     -rout form card
   - list card
-    - add list item and add button to seperate divs
+    * add list item and add button to seperate divs
+  - Editable
+    - add edit button
+      Only the first edit buton responds, NEED to figure out how  to get every edit button to work

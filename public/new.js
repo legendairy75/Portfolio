@@ -96,10 +96,13 @@ button.addEventListener('click', function() {
     mForm.appendChild(nListB);
     nListB.textContent = ('Add Item')
     nListB.type = ('Button')
+    nList.id = 'addListM'
+    nList.name = 'card[list]';
     nList.placeholder = ('Enter New List')
     nListB.addEventListener('click', function () {
       const addItem = document.createElement('input')
       liDiv.appendChild(addItem)
+      addItem.placeholder = ('Enter New List')
     })
   })
 
@@ -110,4 +113,11 @@ button.addEventListener('click', function() {
     mForm.appendChild(nForm);
     nForm.placeholder = ('Enter new Form')
   });
+ // const buttonE = document.getElementById('editButt')
+
+  //button.addEventListener('click', function() {
+
+  //  console.log('CARD IN EDIT MODE!!!')
+
+  //})
 })
