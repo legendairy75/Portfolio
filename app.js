@@ -46,18 +46,18 @@ app.get('/', async (req, res) => {
 });
 
 // Rout to edit cards
-app.get('/cards', async (req, res) => {
+app.get('/edit', async (req, res) => {
   const cards = await Card.find({});
   res.render('cards/index', { cards })
   console.log('edit page opened')
 })
 
 // Route to post cards to page
-app.post('/cards', async (req, res) => {
+app.post('/edit', async (req, res) => {
   //res.send(req.body);
   const card = new Card(req.body.card);
   await card.save();
-  res.redirect('/cards')
+  res.redirect('/edit')
 })
 
 //just a test rout (not importaint)

@@ -28,9 +28,11 @@ TODO:
                     <%= card.body %>
                 </p>
 
-                <p class="card-text text-center">
-                    <%= card.list %>
-                </p>
+                <ul class="card-text text-center">
+                  <% for (i=0; i<card.list.length; i++){%>
+                      <li><%= card.list[i] %></li>
+                  <%}%>
+                </ul>
                 <a href="<%=card.link%>"><%=card.linkT%></a>
                 <button id='editButt'>Edit</button> 
             </div>

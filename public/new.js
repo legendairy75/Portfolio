@@ -22,7 +22,7 @@ button.addEventListener('click', function() {
   const mForm = div.appendChild(document.createElement('form'));
   mForm.id = 'mForm';
   mForm.className = 'form-inline'
-  mForm.action = '/cards';
+  mForm.action = '/edit';
   mForm.method = 'POST';
 
   const cardHead = mForm.appendChild(document.createElement('input'));
@@ -61,12 +61,12 @@ button.addEventListener('click', function() {
      
   addLink.addEventListener('click', function () {
     console.log('link added!!!')
-    const nLink = mForm.appendChild(document.createElement('input'));
+    const nLink = fDiv.appendChild(document.createElement('input'));
     nLink.type = 'url';
     nLink.id = 'addLink';
     nLink.name = 'card[link]';
     nLink.placeholder = ('example.com')
-    const linkText = mForm.appendChild(document.createElement('input'));
+    const linkText = fDiv.appendChild(document.createElement('input'));
     linkText.id = 'linkText';
     linkText.name = 'card[linkT]'
     linkText.placeholder = 'linkText';
@@ -103,6 +103,7 @@ button.addEventListener('click', function() {
       const addItem = document.createElement('input')
       liDiv.appendChild(addItem)
       addItem.placeholder = ('Enter New List')
+      addItem.name = 'card[list]';
     })
   })
 
