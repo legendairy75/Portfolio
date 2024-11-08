@@ -13,5 +13,9 @@ I also want to figure out if I can make a new card by writing the cards html wit
 Deviding into dives is bugged
 
 # Problems
-when creating a list the 'ad list' button being inside the form, submits the form
-* how to stop button in form from submitting form
+~~when creating a list the 'ad list' button being inside the form, submits the form~~
+~~* how to stop button in form from submitting form~~
+## restructuring
+### new.js
+the **functions** in new.js need to be **removed** and added to **external file** ( minimising code in the file itself )
+I have **already tried** this with text.js in the models.edit folder exporting it to app.js and passing it throught to new.js but **console returns an error** `Document not defined`. this has something to do with line 2 of text.js
