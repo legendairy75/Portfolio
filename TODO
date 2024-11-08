@@ -1,0 +1,19 @@
+* make public dorectory
+  * add Stylesheets and photos to public directory
+  * link home to pubdir
+- add updatability
+  - add new card
+    * creat card
+    * add form
+    * render new card on page
+    * rerout to home page
+    - append new parts to form
+  - language card
+    * add text area
+    * add form
+    -rout form card
+  - list card
+    * add list item and add button to seperate divs
+  - Editable
+    - add edit button
+      Only the first edit buton responds, NEED to figure out how  to get every edit button to work

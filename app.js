@@ -1,73 +1,78 @@
-function greet(Name) {
-    console.log(`Hello, ${Name}`);
-    // console.log('ra');
-    // console.log('mi');
-}
-// sing();
-// sing();
-// sing();
+// TODO: 
 
-// function isSnakeEyes(x, y) {
-//     if (x === y) {
-//         console.log('Snake Eyes!');
+const express = require ('express');
+const app = express();
+const path = require('path');
+const catchAsync = require('./utils/CatchAsync');
+const ejsMate = require('ejs-mate');
+const Language = require ('./models/lang');
+const Card = require('./models/card');
 
-//     } else { console.log('Not Snake Eyes!') }
-// }
+const mongoose = require ('mongoose');
 
-// function add(x, y) {
-//     //console.log(x+y)
-//     if (typeof x !== 'number' || typeof y !== 'number') {
-//         return false;
-//     }
-//     else if (typeof x ==) { }
-//     //let sum = x+y;
-//     return x + y;
-// }
+//connenction to mongoose
+mongoose.connect('mongodb://127.0.0.1:27017/portfolio')
+  .then(() => {
+    console.log("MONGO CONNECTION OPEN!!!")
+  })
+  .catch(err => {
+      console.log("OH NO ERROR!!!")
+      console.log(err)
+  //useNewUrlParser: true,
+  //useCreateIndex: true,app.set('view engine', 'ejs');
+  //useUnifiedTopology: true
+})
 
-////////////////////////////////////////////////////////////////////////////////
 
-const element = [];
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+  console.log("Database connected");
+});
 
-function lastElement(element) {
-    //return element;
-    if (element.length !== null) {
-        return element.pop();
-    }
-    else if (element.length === null) {
-        return null;
-    }
-}
+app.use(express.static(__dirname + '/public'));
 
-function sumArray(sumA) {
+app.engine = ('ejs');
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'))
 
-    let i = 0;
-    let ans = 0;
-    if (sumA.length === 0) {
-        return null;
-    }
-    while (i < sumA.length) {
+app.use(express.urlencoded({extended: true}))
 
-        ans += sumA[i];
-        i++;
-    }
-    return (ans);
-}
+// home page route
+app.get('/', async (req, res) => {
+  const cards = await Card.find({});
+  res.render('home', { cards });
+  console.log('home page opened!');
+});
 
-function returnDay(x) {
+// Rout to edit cards
+app.get('/edit', async (req, res) => {
+  const cards = await Card.find({});
+  res.render('cards/index', { cards })
+  console.log('edit page opened')
+})
 
-    let days = [null, 'Monday', 'Tuseday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+// Route to post cards to page
+app.post('/edit', async (req, res) => {
+  //res.send(req.body);
+  const card = new Card(req.body.card);
+  await card.save();
+  res.redirect('/edit')
+})
 
-    if (x < 0 || x > 7) {
+//just a test rout (not importaint)
+app.get ('/test', async (req, res) => {
+  //res.send('<h1> This is the route test page</h1>')
+  res.render('test')
+})
 
-        console.log('Invaled input');
+/*app.post('/lang', catchAsync(async (req, res) => {
+  const lang = new Language(req.body.lang);
+  body.langs.push(lang);
+  lang.save();
+  console.log('language added!')
+}))*/
 
-    }
-    return (days[x]);
-
-}
-
-const fullNames = [{first: 'Albus', last: 'Dumbledore'}, {first: 'Harry', last: 'Potter'}, {first: 'Hermione', last: 'Granger'}, {first: 'Ron', last: 'Weasley'}, {first: 'Rubeus', last: 'Hagrid'}, {first: 'Minerva', last: 'McGonagall'}, {first: 'Severus', last: 'Snape'}];
-
-const firstName = fullNames.map(function(name){
-    return name.first;
+app.listen(3000, () =>{
+  console.log('App listening on port 3000!');
 })

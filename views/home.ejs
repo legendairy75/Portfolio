@@ -1,0 +1,19 @@
+<%- include ('layouts/boilerplate') %>
+<body>
+  <h1 class="Display-1 bg-primary text-white rounded-pill text-center">HOME</h1>
+  <div id="mcard" class="container">
+  <% for (let card of cards){%>
+  <nav id="links" class="card container-fluid">
+            <div class="card-body">
+                <h2 class="h2 card-title text-primary text-center"><%= card.title %></h2>
+                <p class="card-text text-center">
+                    <%= card.body %>
+                </p>
+                <a href="<%=card.link%>"><%=card.linkT%></a>
+            </div>
+        </nav>
+  <% }%>
+  </div>
+
+</body>
+</html>
