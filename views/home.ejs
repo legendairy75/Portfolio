@@ -1,5 +1,5 @@
-<%- include ('layouts/boilerplate') %>
-<body>
+
+<% layout('layouts/boilerplate')%>
   <h1 class="Display-1 bg-primary text-white rounded-pill text-center">HOME</h1>
   <div id="mcard" class="container">
   <% for (let card of cards){%>
@@ -9,11 +9,14 @@
                 <p class="card-text text-center">
                     <%= card.body %>
                 </p>
-                <a href="<%=card.link%>"><%=card.linkT%></a>
+                <ul class="list-group  text-center">
+                  <% for (i=0; i<card.list.length; i++){%>
+                      <li class="list-group-item"><%= card.list[i] %></li>
+                  <%}%>
+                </ul>
+                <a class="btn btn-outline-primary" href="<%=card.link%>"><%=card.linkT%></a>
             </div>
         </nav>
   <% }%>
   </div>
-
-</body>
-</html>
+<a class="btn btn-primary btn-sm" href="/edit">Edit Mode</a>

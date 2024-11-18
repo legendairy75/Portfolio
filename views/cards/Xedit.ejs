@@ -1,0 +1,24 @@
+
+<% layout('layouts/boilerplate')%>
+    <!-- <h1>This Is The Edit Page!</h1> -->
+<h1 class="Display-1 bg-primary text-white rounded-pill text-center">EDIT</h1>
+<form action="/edit/<%=card._id%>?_method=PUT" method="POST">
+    <h2 class="h2 card-title text-primary text-center" contenteditable="true" name="card[title]"><%= card.title %></h2>
+    <p class="card-text text-center" contenteditable="true" name="card[body]">
+                    <%= card.body %>
+                </p>
+
+                <div class="card container-fluid">
+                <ul class="list-group">
+                  <% for (i=0; i<card.list.length; i++){%>
+                      <li contenteditable="true" class="list-group-item"><%= card.list[i] %></li>
+                  <%}%>
+                </ul>
+                </div>
+                <p contenteditable="true"><%=card.linkT%></p>
+                <a contenteditable="true" href="<%=card.link%>"><%=card.link%></a>
+                <button> Submit </button>
+</form>
+
+    <a href=""></a>
+

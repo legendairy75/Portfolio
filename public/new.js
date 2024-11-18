@@ -22,7 +22,7 @@ button.addEventListener('click', function() {
   const mForm = div.appendChild(document.createElement('form'));
   mForm.id = 'mForm';
   mForm.className = 'form-inline'
-  mForm.action = '/cards';
+  mForm.action = '/edit';
   mForm.method = 'POST';
 
   const cardHead = mForm.appendChild(document.createElement('input'));
@@ -103,6 +103,7 @@ button.addEventListener('click', function() {
       const addItem = document.createElement('input')
       liDiv.appendChild(addItem)
       addItem.placeholder = ('Enter New List')
+      addItem.name = 'card[list]';
     })
   })
 
