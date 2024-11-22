@@ -21,15 +21,28 @@ button.addEventListener('click', function() {
 
   const mForm = div.appendChild(document.createElement('form'));
   mForm.id = 'mForm';
-  mForm.className = 'form-inline'
+  mForm.className = 'form-inline validated-form'
   mForm.action = '/edit';
   mForm.method = 'POST';
+  mForm.noValidate = true
 
-  const cardHead = mForm.appendChild(document.createElement('input'));
+  const hDiv = mForm.appendChild(document.createElement('div'));
+  // hDiv.className = 'mb-3'
+
+  const cardHead = hDiv.appendChild(document.createElement('input'));
   cardHead.placeholder = ('Head')
   cardHead.id = 'title';
   cardHead.className = 'form-control'
   cardHead.name = 'card[title]'
+  cardHead.required = true
+
+  const valDiv = hDiv.appendChild(document.createElement('div'));
+  valDiv.className = 'valid-feedback'
+  valDiv.textContent = 'Looks Good!'
+
+  const invalDiv = hDiv.appendChild(document.createElement('div'));
+  invalDiv.className = 'invalid-feedback'
+  invalDiv.textContent = 'Pleas enter a heading!'
   
   const fDiv = mForm.appendChild(document.createElement('div'));
   fDiv.className = ('card container-fluid'); 
@@ -47,26 +60,26 @@ button.addEventListener('click', function() {
   addList.textContent = ('Add List');
   addList.className = 'btn'
 
-  const addForm = div.appendChild(document.createElement('button'));
-  addForm.textContent = ('Add Form');
-  addForm.className = 'btn'
+  // const addForm = div.appendChild(document.createElement('button'));
+  // addForm.textContent = ('Add Form');
+  // addForm.className = 'btn'
 
-  const addPic = div.appendChild(document.createElement('button'));
-  addPic.textContent = ('Add Picture');
-  addPic.className = 'btn'
+  // const addPic = div.appendChild(document.createElement('button'));
+  // addPic.textContent = ('Add Picture');
+  // addPic.className = 'btn'
 
   const createCard = mForm.appendChild(document.createElement('button'));
   createCard.innerHTML = ('Create Card!')
   createCard.className = 'btn btn-primary'
      
   addLink.addEventListener('click', function () {
-    console.log('link added!!!')
-    const nLink = mForm.appendChild(document.createElement('input'));
+    // console.log('link added!!!')
+    const nLink = fDiv.appendChild(document.createElement('input'));
     nLink.type = 'url';
     nLink.id = 'addLink';
     nLink.name = 'card[link]';
     nLink.placeholder = ('example.com')
-    const linkText = mForm.appendChild(document.createElement('input'));
+    const linkText = fDiv.appendChild(document.createElement('input'));
     linkText.id = 'linkText';
     linkText.name = 'card[linkT]'
     linkText.placeholder = 'linkText';
@@ -74,7 +87,7 @@ button.addEventListener('click', function() {
   });
 
   addText.addEventListener('click', function () {
-    console.log('text area added!!!');
+    // console.log('text area added!!!');
     const nText = document.createElement('textarea');
     div.removeChild(addText)
     fDiv.appendChild(nText);
@@ -82,11 +95,12 @@ button.addEventListener('click', function() {
     nText.name = 'card[body]';
     nText.className = 'form-control'
     nText.placeholder = ('Enter new Text Here')
+    nText.required = true
   })
 
   // TODO: turn addList into an array of inputs instead of a text box
   addList.addEventListener('click', function () {
-    console.log('List added!!!');
+    // console.log('List added!!!');
     const liDiv = document.createElement('div');
     fDiv.appendChild(liDiv);
     const nList = document.createElement('input');
@@ -96,6 +110,7 @@ button.addEventListener('click', function() {
     mForm.appendChild(nListB);
     nListB.textContent = ('Add Item')
     nListB.type = ('Button')
+    nListB.className = 'btn'
     nList.id = 'addListM'
     nList.name = 'card[list]';
     nList.placeholder = ('Enter New List')
@@ -105,15 +120,35 @@ button.addEventListener('click', function() {
       addItem.placeholder = ('Enter New List')
       addItem.name = 'card[list]';
     })
-  })
-
-  addForm.addEventListener('click', function () {
-    console.log('Form added!!!')
-    const nForm = document.createElement('input');
-    div.removeChild(addForm)
-    mForm.appendChild(nForm);
-    nForm.placeholder = ('Enter new Form')
   });
+
+  // addForm.addEventListener('click', function () {
+  //   console.log('Form added!!!')
+  //   const nForm = document.createElement('input');
+  //   div.removeChild(addForm)
+  //   mForm.appendChild(nForm);
+  //   nForm.placeholder = ('Enter new Form')
+  // });
+
+  (function() {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.validated-form')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+  })();
+
  // const buttonE = document.getElementById('editButt')
 
   //button.addEventListener('click', function() {

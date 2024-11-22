@@ -1,14 +1,22 @@
-// TODO: 
+// TODO:
 
 const express = require ('express');
 const app = express();
 const path = require('path');
 const catchAsync = require('./utils/CatchAsync');
+const ExpressError = require('./utils/ExpressError.js');
 const ejsMate = require('ejs-mate');
+const session = require('express-session');
+const flash = require('connect-flash');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
+// const Joi = require('joi');
+const {cardSchema} = require('./schemas.js');
 const Language = require ('./models/lang');
 const Card = require('./models/card');
+// const bootstrap = require('bootstrap')
+
+const cards = require('./routes/cards')
 
 const mongoose = require ('mongoose');
 
@@ -25,7 +33,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/portfolio')
   //useUnifiedTopology: true
 })
 
-
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
@@ -40,55 +47,42 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')))
+
+const sessionConfig = {
+  secret: 'Thisisasecret!!!',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  }
+}
+app.use(session(sessionConfig))
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
 
 app.use(morgan('dev'));
 
+app.use((req ,res, next) => {
+  res.locals.success = req.flash('success');
+  next();
+})
+
+app.use('/edit', cards)
+
 // home page route
-app.get('/', async (req, res) => {
+app.get('/', catchAsync( async (req, res) => {
   const cards = await Card.find({});
   res.render('home', { cards });
-  console.log('home page opened!');
-});
-
-// Rout to edit cards
-app.get('/edit', async (req, res) => {
-  const cards = await Card.find({});
-  res.render('cards/index', { cards })
-  console.log('edit page opened')
-})
-
-// Route to post cards to page
-app.post('/edit', async (req, res) => {
-  //res.send(req.body);
-  const card = new Card(req.body.card);
-  await card.save();
-  res.redirect('/edit')
-})
-
-// Rout to a Spesific cards edit page
-app.get('/edit/:id', async (req, res) =>{
-  console.log('card in edit mode!')
-  // res.send('<h1>THIS CARD IS IN EDIT MODE!!!</h1>')
-  const card = await Card.findById(req.params.id)
-  res.render('cards/edit', { card })
-})
-
-app.put('/edit/:id', async (req, res) => {
-  // res.send('IT WORKED!!!')
-  console.log('card has been updated!')
-  const { id } = req.params;
-  const card = await Card.findByIdAndUpdate(id, { ...req.body.card})
-  res.redirect(`/edit/${card._id}`)
-})
-// TODO: redirect path NOT right
-//
-app.delete('/edit/:id', async (req, res) => {
-  // res.send('CARD DELETED!!!');
-  console.log('card has been deleted!')
-  const { id } = req.params;
-  await Card.findByIdAndDelete(id);
-  res.redirect('/edit')
-})
+  // console.log('home page opened!');
+}));
 
 //just a test rout (not importaint)
 app.get ('/test', async (req, res) => {
@@ -103,9 +97,21 @@ app.get ('/test', async (req, res) => {
   console.log('language added!')
 }))*/
 
-app.use((req,res) => {
-  res.status(404).send('NOT FOUND!')
+app.all('*', (req, res, next) => {
+  // res.send("404!!!")
+  next(new ExpressError('Page Not Found', 404))
 })
+
+app.use((err, req, res, next) =>{
+  const {statusCode = 500 } = err;
+  if (!err.message) err.message = 'Oh No, Something Went Wrong!'
+  res.status(statusCode).render('error', { err });
+  // res.send('Uh Oh, Something went wrong!')
+})
+
+// app.use((req,res) => {
+//   res.status(404).send('NOT FOUND!')
+// })
 
 app.listen(3000, () =>{
   console.log('App listening on port 3000!');
