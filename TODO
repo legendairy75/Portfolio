@@ -24,3 +24,11 @@
   * style home page
   * style edit page
   * style edit/id
+* Add authintication
+  * Create login rout
+    * rout
+    * page
+  * Create model
+  * Config pasport
+  * add isLoggedin middleware
+  * Create logout

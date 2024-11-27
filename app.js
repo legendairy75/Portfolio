@@ -1,4 +1,6 @@
-// TODO:
+// TODO: require passport
+//       add login rout
+//       add logout rout
 
 const express = require ('express');
 const app = express();
@@ -15,7 +17,11 @@ const {cardSchema} = require('./schemas.js');
 const Language = require ('./models/lang');
 const Card = require('./models/card');
 // const bootstrap = require('bootstrap')
+const passport = require('passport');
+const localStrategy = require('passport-local');
+const User = require('./models/user');
 
+const userRouts = require('./routes/Users.js')
 const cards = require('./routes/cards')
 
 const mongoose = require ('mongoose');
@@ -28,9 +34,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/portfolio')
   .catch(err => {
       console.log("OH NO ERROR!!!")
       console.log(err)
-  //useNewUrlParser: true,
-  //useCreateIndex: true,app.set('view engine', 'ejs');
-  //useUnifiedTopology: true
 })
 
 const db = mongoose.connection;
@@ -62,7 +65,16 @@ const sessionConfig = {
 app.use(session(sessionConfig))
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
@@ -70,11 +82,7 @@ app.use((req, res, next) => {
 
 app.use(morgan('dev'));
 
-app.use((req ,res, next) => {
-  res.locals.success = req.flash('success');
-  next();
-})
-
+app.use('/', userRouts)
 app.use('/edit', cards)
 
 // home page route
@@ -90,13 +98,6 @@ app.get ('/test', async (req, res) => {
   res.render('test')
 })
 
-/*app.post('/lang', catchAsync(async (req, res) => {
-  const lang = new Language(req.body.lang);
-  body.langs.push(lang);
-  lang.save();
-  console.log('language added!')
-}))*/
-
 app.all('*', (req, res, next) => {
   // res.send("404!!!")
   next(new ExpressError('Page Not Found', 404))
@@ -108,10 +109,6 @@ app.use((err, req, res, next) =>{
   res.status(statusCode).render('error', { err });
   // res.send('Uh Oh, Something went wrong!')
 })
-
-// app.use((req,res) => {
-//   res.status(404).send('NOT FOUND!')
-// })
 
 app.listen(3000, () =>{
   console.log('App listening on port 3000!');

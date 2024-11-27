@@ -22,15 +22,18 @@
     "connect-flash": "^0.1.1",
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
-    "express": "^4.21.0",
+    "express": "^4.21.1",
     "express-session": "^1.18.1",
     "joi": "^17.13.3",
     "method-override": "^3.0.0",
-    "mongoose": "^8.6.3",
+    "mongoose": "^8.8.2",
     "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0",
     "pixi.js": "^8.5.2"
   },
   "devDependencies": {
-    "vite": "^5.4.10"
+    "vite": "^5.4.11"
   }
 }

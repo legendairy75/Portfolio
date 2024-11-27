@@ -23,6 +23,7 @@ button.addEventListener('click', function() {
   mForm.id = 'mForm';
   mForm.className = 'form-inline validated-form'
   mForm.action = '/edit';
+  // mForm.enctype = 'multipart/form-data'
   mForm.method = 'POST';
   mForm.noValidate = true
 
@@ -64,9 +65,9 @@ button.addEventListener('click', function() {
   // addForm.textContent = ('Add Form');
   // addForm.className = 'btn'
 
-  // const addPic = div.appendChild(document.createElement('button'));
-  // addPic.textContent = ('Add Picture');
-  // addPic.className = 'btn'
+  const addPic = div.appendChild(document.createElement('button'));
+  addPic.textContent = ('Add Picture');
+  addPic.className = 'btn'
 
   const createCard = mForm.appendChild(document.createElement('button'));
   createCard.innerHTML = ('Create Card!')

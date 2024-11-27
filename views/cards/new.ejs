@@ -1,17 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <form action="/cards" method="POST" id="cardForm">
-    <div>
-      <label for="title">Tittle</label>
-      <input type="text" id="title" placeholder="Card title" name="card[title]">
+
+<% layout('layouts/boilerplate')%>
+<h1 class="Display-1 bg-primary text-white rounded-pill text-center">Create New Card</h1>
+<div>  
+  <form id="mForm" class="form-inline validated-form" action="new"
+    method="POST" novalidate>
+      <div>
+        <input placeholder="Head" id="title" class="form-control" 
+      name="card[title]" required="true">
+        <div class="valid-feedback">Looks Good!</div>
+        <div class="invalid-feedback">Pleas enter a heading!</div>
+      </div><div class="card container-fluid">
+      </div>
+    <div class="card container-fluid __web-inspector-hide-shortcut__">
+      <input type="url" id="addLink" name="card[link]" placeholder="example.com">
+      <input id="linkText" name="card[linkT]" placeholder="linkText">
+
+      <input type="file" name="card[img]" id="">
+
+      <textarea id="addText" name="card[body]" class="form-control" placeholder="Enter new Text Here" required=""></textarea>
+      <div>
+        <input id="addListM" name="card[list]" placeholder="Enter New List">
+      </div>
     </div>
-        <button>Add Card</button>
-  </form>
-</body>
-</html>
+      <button class="btn btn-primary">Create Card!</button>
+    </form>
+</div>
+
+<script>
+  (function() {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.validated-form')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+  })();
+</script>
+  

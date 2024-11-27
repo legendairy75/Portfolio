@@ -5,6 +5,7 @@ const catchAsync = require('../utils/CatchAsync');
 const {cardSchema} = require('../schemas.js');
 const ExpressError = require('../utils/ExpressError.js');
 const Card = require('../models/card');
+const {isLoggedIn} = require('../middleware');
 
 const validateCard = (req, res, next) =>{
   const { error } = cardSchema.validate(req.body);
@@ -19,7 +20,7 @@ const validateCard = (req, res, next) =>{
 }
 
 // Rout to edit cards
-router.get('/', catchAsync( async (req, res) => {
+router.get('/', isLoggedIn, catchAsync( async (req, res) => {
   const cards = await Card.find({});
   res.render('cards/index', { cards })
   // console.log('edit page opened')
@@ -36,6 +37,22 @@ router.post('/', validateCard, catchAsync( async (req, res, next) => {
 
   res.redirect('/edit')
 }))
+
+router.get('/new', isLoggedIn, catchAsync( async(req, res) => {
+  res.render('cards/new')
+}));
+
+router.post('/new', validateCard, catchAsync( async (req, res, next) => {
+  //res.send(req.body);
+  // if(!req.body.card) throw new ExpressError('Invalid Data!', 400)
+  
+  const card = new Card(req.body.card);
+  await card.save();
+  req.flash('success', 'Successfully made a new card!');
+
+  res.redirect('/edit')
+}))
+
 
 // Rout to a Spesific cards edit page
 router.get('/:id', catchAsync( async (req, res) =>{
