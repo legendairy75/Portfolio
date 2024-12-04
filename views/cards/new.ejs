@@ -1,30 +1,26 @@
 
 <% layout('layouts/boilerplate')%>
 <h1 class="Display-1 bg-primary text-white rounded-pill text-center">Create New Card</h1>
-<div>  
+<div id="div">  
   <form id="mForm" class="form-inline validated-form" action="new"
-    method="POST" novalidate>
+    method="POST" enctype="multipart/form-data" novalidate>
       <div>
         <input placeholder="Head" id="title" class="form-control" 
       name="card[title]" required="true">
         <div class="valid-feedback">Looks Good!</div>
         <div class="invalid-feedback">Pleas enter a heading!</div>
-      </div><div class="card container-fluid">
+      </div><div id="fDiv" class="card container-fluid">
+      <input type="file" name="image" id="" multiple>
       </div>
-    <div class="card container-fluid __web-inspector-hide-shortcut__">
-      <input type="url" id="addLink" name="card[link]" placeholder="example.com">
-      <input id="linkText" name="card[linkT]" placeholder="linkText">
-
-      <input type="file" name="card[img]" id="">
-
-      <textarea id="addText" name="card[body]" class="form-control" placeholder="Enter new Text Here" required=""></textarea>
-      <div>
-        <input id="addListM" name="card[list]" placeholder="Enter New List">
-      </div>
-    </div>
       <button class="btn btn-primary">Create Card!</button>
     </form>
+  <button id="addTextBtn">Add Text</button>
+  <button id="addListBtn">Add List</button>
+  <button id="addLinkBtn">Add Link</button>
+  <!-- <button></button> -->
 </div>
+
+<script src="../newFunctions.js"></script>
 
 <script>
   (function() {

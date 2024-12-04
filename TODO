@@ -32,3 +32,16 @@
   * Config pasport
   * add isLoggedin middleware
   * Create logout
+* Fix /new rerout
+  * remove inputs and add buttons
+  * add functionality to buttons (from card.js)
+- Add pictures
+  - Add multer middleware
+  - connect cloudinary
+  - add dotenv
+  - add upload to cloudinary
+  - Load pic from cloudinary to mongo
+  - display pictures
+    delete pictures
+
+- refactor routes/User.js & add controll

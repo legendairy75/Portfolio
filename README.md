@@ -52,3 +52,7 @@ If not the validator will throw an error for list not being an aray.
 ### error
 
 errpr presintation should be fixed eventualy, like rerouting viewers to the home page if they try to go anywhaere they are not alowed or rendering a 404 page if the page they are looking fore does not exist.
+
+### Routes
+
+The routes could be refactored for a more organized look & the functionality can be moved to a different file

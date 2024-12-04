@@ -47,6 +47,7 @@ button.addEventListener('click', function() {
   
   const fDiv = mForm.appendChild(document.createElement('div'));
   fDiv.className = ('card container-fluid'); 
+  fDiv.id = 'fDiv';
 
   const addLink = div.appendChild(document.createElement('button'));
   addLink.textContent = ('Add Link');
@@ -99,7 +100,6 @@ button.addEventListener('click', function() {
     nText.required = true
   })
 
-  // TODO: turn addList into an array of inputs instead of a text box
   addList.addEventListener('click', function () {
     // console.log('List added!!!');
     const liDiv = document.createElement('div');
