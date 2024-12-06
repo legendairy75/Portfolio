@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== "production") {
+  require('dotenv').config();
+}
+
 // TODO: require passport
 //       add login rout
 //       add logout rout

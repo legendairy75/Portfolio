@@ -7,7 +7,9 @@ module.exports.cardSchema = Joi.object({
       link: Joi.string(),
       linkT: Joi.string(),
       list: Joi.array(),
-    }).required()
+      // image: Joi.array().required(),
+    }).required(),
+    deleteImages: Joi.array()
   })
 
 

@@ -8,10 +8,6 @@
     * render new card on page
     * rerout to home page
     * append new parts to form
-  ? language card
-    * add text area
-    * add form
-    -rout form card
   * list card
     * add list item and add button to seperate divs
   * Editable
@@ -36,12 +32,12 @@
   * remove inputs and add buttons
   * add functionality to buttons (from card.js)
 - Add pictures
-  - Add multer middleware
-  - connect cloudinary
-  - add dotenv
-  - add upload to cloudinary
-  - Load pic from cloudinary to mongo
-  - display pictures
-    delete pictures
+  * Add multer middleware
+  * connect cloudinary
+  * add dotenv
+  * add upload to cloudinary
+  * Load pic from cloudinary to mongo
+  * display pictures
+  - delete pictures
 
-- refactor routes/User.js & add controll
+* refactor routes/User.js & add controll

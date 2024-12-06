@@ -23,15 +23,7 @@
 
   I've uncommented the ```/new``` rout while I work out how to upload immages to mongo.
 
-#### The ```/new``` Rout
-
-  the new card page is in a bit of dissaray, I coppied the renderd form from the edit page and pasted it into new.ejs, but afew things still must be done. **First** the items div must be removed and instead place the buttons to append items, **then** the functionality of those buttons must be emplamented **including list**.
-If not the validator will throw an error for list not being an aray.
-  Next I Never setup verification for /new so after the form is properly set up I will have to figure out how to connect the validator.
-
-#### Adding Pictures
-
-  After all  of that I will add elements to the form to alow files to be uploaded, I will then install the multer package and connect to it. After i will put in my cloudinary crudentials to connect to cloudinary & link cloudinary to mongo. Once that is done all i have to do is get the card to display the image & delete the image (from mongo & cloudinary).
+  Pictures are able to be uploaded to cloudinary and render on the /edit page. but when you add the picture functionality you get an error that says the map for the img array cannot be empty, the issue is thet the files information is not being passed in so the array is zero, Ive removed all of the code for adding and removing images out of purer frustration hoping that going back over the lectures nextweek and rebuilding will help.
 
 ## renovations
 

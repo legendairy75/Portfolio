@@ -9,9 +9,15 @@
       name="card[title]" required="true">
         <div class="valid-feedback">Looks Good!</div>
         <div class="invalid-feedback">Pleas enter a heading!</div>
-      </div><div id="fDiv" class="card container-fluid">
-      <input type="file" name="image" id="" multiple>
       </div>
+      <div id="fDiv" class="card container-fluid">
+      <!-- <input type="file" name="image" id="" multiple> -->
+      <div >
+        <!-- <label for="formFile" class="form-label">Default file input example</label> -->
+        <input class="form-control" type="file" id="formFile" name="image" multiple>
+        </div>
+      </div>
+      
       <button class="btn btn-primary">Create Card!</button>
     </form>
   <button id="addTextBtn">Add Text</button>

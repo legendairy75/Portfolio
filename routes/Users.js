@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const catchAsync = require('../utils/CatchAsync');
-const User = require('../models/user');
+
+const users = require('../controllers/users.js')
 
 const { storeReturnTo } = require('../middleware');
 
@@ -28,26 +29,21 @@ const { storeReturnTo } = require('../middleware');
 //
 // }));
 
-router.get('/login', (req, res) => {
-  res.render('users/login');
-})
+router.get('/login', users.login)
 
-router.post('/login', storeReturnTo, passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}), (req, res) => {
-  req.flash('success', 'Welcome back!');
-  const redirectUrl = res.locals.returnTo || '/';
-  res.redirect(redirectUrl);
-})
-
-router.get('/logout', (req, res, next) => {
-  req.logout(function (err) {
-    if (err) {
-      return next (err);
+router.post(
+  '/login',
+  storeReturnTo,
+  passport.authenticate(
+    'local',
+    {failureFlash:
+      true,
+      failureRedirect:
+      '/login'
     }
+  ),
+  users.loginRedirect)
 
-  req.flash ('success', "Logged you out!");
-  res.redirect('/')
-  });
-  
-});
+router.get('/logout', users.logout);
 
 module.exports = router;

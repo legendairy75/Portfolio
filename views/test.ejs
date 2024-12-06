@@ -1,10 +1,82 @@
-<!-- TODO: comment out boilerplate, make new head, add pixi script to head, load -->
-<!-- - include ('layouts/boilerplate') %> -->
 <% layout('layouts/boilerplate')%>
+    <!-- <h1>This Is The Edit Page!</h1> -->
+<h1 class="Display-1 bg-primary text-white rounded-pill text-center">EDIT</h1>
+<form action="/edit/<%=card._id%>?_method=PUT" method="POST">
 
-<nav id="links" class="card container-fluid">
- <h1>Hello World!</h1> 
- <canvas id='mycanvas'></canvas>
- <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
- <script type='module' src='game.js'></script>
-</nav>
+<div>
+  <label class="h2 form-label" for="title"><%= card.title %></label>
+  <input class="form-control" type="text" name="card[title]" id="title">
+</div>
+<button class="btn btn-success" >Update title</button>
+</form>
+
+<form action="/edit/<%=card._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+
+  <div>
+   
+    <lable class="fs-3 form-label" for="image">Add Image</lable>
+    <input type="file" id="image" name="image" multiple>
+
+  </div>
+  <div class="mb-3">
+
+    <% card.images.forEach(function(img, i) { %>
+
+    <img src="<%= img.url %>" alt="" class="img-thumbnail">
+    <div class="form-check-inline">
+      <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+    </div>
+    <label for="image-<%=i%>">Delete?</label>
+
+    <% })%>
+
+  </div>
+<button class="btn btn-success">Update Images</button>
+</form>
+
+<form action="/edit/<%=card._id%>?_method=PUT" method="POST">
+<div>
+  <label class="fs-3 form-label" for="body"><%= card.body %></label>
+  <textarea class="form-control" name="card[body]" id="body"></textarea>
+</div>
+<button class="btn btn-success" >Update body</button>
+</form>
+
+<form action="/edit/<%=card._id%>?_method=PUT" method="POST">
+<div>
+  <label class="h2 form-label" for="link"><%= card.link %></label>
+  <input class="form-control" type="text" name="card[link]" id="link">
+</div>
+<button class="btn btn-success" >Update link</button>
+</form>
+
+<form action="/edit/<%=card._id%>?_method=PUT" method="POST">
+<div>
+  <label class="h2 form-label" for="linkT"><%= card.linkT %></label>
+  <input class="form-control" type="text" name="card[linkT]" id="linkT">
+</div>
+<button class="btn btn-success" >Update link text</button>
+</form>
+
+<!-- <div>
+  <label class="h2 form-label" for="list"><%= card.list %></label>
+  <input class="form-control" type="text" name="card[list(2)]" id="list">
+</div> -->
+
+<form action="/edit/<%=card._id%>?_method=PUT" method="POST">
+<div>
+  <h2>List:</h2>
+    <% for (i=0; i<card.list.length; i++){%>
+        <label class="h2 form-label" for="li <%= i %>" ><%= card.list[i] %></label>
+        <input class="form-control" type="text" name="card[list]" id="li <%= i %>">
+    <%}%>
+</div>
+<button class="btn btn-success" >Update list</button>
+</form>
+
+
+<!-- </form> -->
+<form action="/edit/<%=card._id%>?_method=DELETE" method="POST">
+  <button class="btn btn-danger" >DELETE</button>
+</form>
+<a class="btn btn-primary" href="/edit">Back To Cards</a>

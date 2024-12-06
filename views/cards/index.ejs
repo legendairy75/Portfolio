@@ -6,6 +6,9 @@
   <nav id="links" class="card container-fluid">
             <div class="card-body">
                 <h2 class="h2 card-title text-primary text-center"><%= card.title %></h2>
+                <% for(let img of card.images) { %>
+                <img src="<%= img.url %>" class="card-img-top" alt="...">
+                <% } %> 
                 <p class="card-text text-center">
                     <%= card.body %>
                 </p> 

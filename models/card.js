@@ -7,6 +7,12 @@ cardSchema = new Schema({
   link: String,
   linkT: String,
   list: [ String ],
+  images: [
+    {
+      url: String,
+      filename: String
+    }
+  ],
 });
 
 module.exports = mongoose.model("Card",cardSchema);
