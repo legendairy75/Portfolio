@@ -31,7 +31,7 @@
 
   <h2>About</h2>
   <p>
-      Hello! My name Is Cameron Gibson and Im a Backend developer.
+      Hello! My name Is <b>Cameron Gibson</b> and Im a <b>Backend developer</b>.
       I started programming when I was a chiled and built programs with js and visual basic.
       I can build a simple webpage using html or build an app with express.js.
   </p>
@@ -52,21 +52,6 @@
   <a href="mailto:roncrash1@gmail.com">roncrash1@gmail.com</a>
     
   <h2>My Work</h2>
-
-  <div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
-
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
-</div>
   
   <ul>
     <li>
@@ -78,6 +63,7 @@
         <a href="https://yelpcamp-b9ul.onrender.com">Yelp Camp</a>
         <p>A website for reviewing (made up) campgrounds (WARNING! may take up to 1 minut to load)</p>
     </li>
+    <li><a href="/blog.html">My Blog</a></li>
   </ul>
 
   <h2>Resume</h2>
